@@ -1,6 +1,7 @@
 # Vocabulary Application Servlet
 ### Introduction
-- This ís application
+- This is application...
+![img.png](img.png)
 ### Env
 - Java 11
 - MySQL 8.0.28
