@@ -6,11 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ include file="/commons/taglibs.jsp" %>
 <html>
 <head>
     <title>Home Page</title>
 </head>
 <body>
-    <h1>Home page...</h1>
+    <h1>Hello ${model.fullname}</h1>
 </body>
 </html>

@@ -5,7 +5,11 @@ USE `vocabulary-app-servlet`;
 -- Role table
 CREATE TABLE Roles (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(255)
+  name VARCHAR(255),
+  createddate TIMESTAMP NULL,
+  modifieddate TIMESTAMP NULL,
+  createdby VARCHAR(255) NULL,
+  modifiedby VARCHAR(255) NULL
 );
 
 
@@ -15,9 +19,14 @@ CREATE TABLE Users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(255),
   password VARCHAR(255),
+  fullname VARCHAR(255),
   role_id INT,
   telegram_id VARCHAR(255),
-  avatar VARCHAR(255)
+  avatar VARCHAR(255),
+  createddate TIMESTAMP NULL,
+  modifieddate TIMESTAMP NULL,
+  createdby VARCHAR(255) NULL,
+  modifiedby VARCHAR(255) NULL
 );
 -- ==============================================Users (n:1) Roles==============================================
 ALTER TABLE Users ADD CONSTRAINT FK_Users_Roles FOREIGN KEY (role_id) REFERENCES Roles(id); -- side n (Users) will contain FOREIGN KEY
@@ -28,7 +37,11 @@ ALTER TABLE Users ADD CONSTRAINT FK_Users_Roles FOREIGN KEY (role_id) REFERENCES
 CREATE TABLE TelegramBots (
   id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT,
-  token VARCHAR(255)
+  token VARCHAR(255),
+  createddate TIMESTAMP NULL,
+  modifieddate TIMESTAMP NULL,
+  createdby VARCHAR(255) NULL,
+  modifiedby VARCHAR(255) NULL
 );
 -- ==============================================TelegramBots (n:1) Users==============================================
 ALTER TABLE TelegramBots ADD CONSTRAINT FK_TelegramBots_Users FOREIGN KEY (user_id) REFERENCES Users(id); -- side n (TelegramBots) will contain FOREIGN KEY
@@ -40,7 +53,11 @@ CREATE TABLE Vocabulary (
   id INT PRIMARY KEY AUTO_INCREMENT,
   word VARCHAR(255) NOT NULL,
   translate VARCHAR(255) NOT NULL,
-  example TEXT NOT NULL
+  example TEXT NOT NULL,
+  createddate TIMESTAMP NULL,
+  modifieddate TIMESTAMP NULL,
+  createdby VARCHAR(255) NULL,
+  modifiedby VARCHAR(255) NULL
 );
 
 
@@ -51,7 +68,11 @@ CREATE TABLE UserVocabulary (
   vocabulary_id INT,
   is_forgot INT NOT NULL DEFAULT 0,
   study_count INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (user_id, vocabulary_id)
+  PRIMARY KEY (user_id, vocabulary_id),
+  createddate TIMESTAMP NULL,
+  modifieddate TIMESTAMP NULL,
+  createdby VARCHAR(255) NULL,
+  modifiedby VARCHAR(255) NULL
 );
 -- ==============================================UserVocabulary (n:1) Users==============================================
 ALTER TABLE UserVocabulary ADD CONSTRAINT FK_UserVocabulary_Users FOREIGN KEY (user_id) REFERENCES Users(id); -- side n (UserVocabulary) will contain FOREIGN KEY
